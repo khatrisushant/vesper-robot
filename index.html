@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101214">
+  <meta name="description"
+        content="Explore Vesper Unit 01, an original interactive humanoid robotics concept.">
+  <title>VESPER — Unit 01</title>
+  <link rel="stylesheet" href="./style.css">
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="loading" role="status" aria-live="polite">
+    <div class="loader-symbol">V<span>01</span></div>
+    <p id="loading-label">INITIALIZING STUDIO</p>
+    <progress id="progress" max="100" value="0"></progress>
+    <span id="percentage">0%</span>
+  </div>
+
+  <main id="app">
+    <div id="viewport" aria-label="Interactive robot studio">
+      <canvas id="canvas" tabindex="0"
+              aria-label="3D robot. Drag to rotate, scroll to zoom. Use the component menu to inspect parts."></canvas>
+    </div>
+
+    <header class="topbar">
+      <a class="wordmark" href="./" aria-label="Vesper home">
+        <span class="brand-symbol">◈</span> VESPER<span class="wordmark-dot">®</span>
+      </a>
+      <span class="top-caption">ADVANCED ROBOTICS / CONCEPT SERIES</span>
+      <span class="live"><i></i> SYSTEM ONLINE</span>
+    </header>
+
+    <section class="intro" aria-label="Project introduction">
+      <div class="eyebrow"><span></span> ENGINEERED FOR POSSIBILITY</div>
+      <h1>A new kind<br>of presence<span>.</span></h1>
+      <p>Precision in every movement.<br>Intelligence in every detail.</p>
+      <div class="edition">
+        <span>UNIT — 01</span>
+        <span>HUMANOID RESEARCH PLATFORM</span>
+      </div>
+    </section>
+
+    <aside class="specs" aria-label="Concept specifications">
+      <span class="eyebrow">PROTOTYPE SPECIFICATIONS</span>
+      <div><strong>1.82<span> m</span></strong><small>DESIGN HEIGHT</small></div>
+      <div><strong>42</strong><small>CONCEPT ACTUATION AXES</small></div>
+      <div><strong>360<span>°</span></strong><small>SPATIAL AWARENESS</small></div>
+      <p>Fictional concept specifications</p>
+    </aside>
+
+    <aside id="panel" class="glass inspection" hidden aria-labelledby="part-title">
+      <div class="panel-heading">
+        <span class="eyebrow">COMPONENT INSPECTION</span>
+        <button id="back" class="text-button">← BACK</button>
+      </div>
+      <div class="component-number" id="part-number">01</div>
+      <h2 id="part-title">HEAD SENSOR</h2>
+      <p id="part-subtitle"></p>
+      <dl>
+        <dt>COMPONENT</dt><dd id="part-component"></dd>
+        <dt>FUNCTION</dt><dd id="part-function"></dd>
+        <dt>STATUS</dt><dd class="active-status">● ACTIVE</dd>
+      </dl>
+      <small>Illustrative technical information / concept only</small>
+    </aside>
+
+    <div class="viewer-meta">
+      <span class="crosshair">+</span>
+      <div><strong>VESPER / 01</strong><span id="source">INITIALIZING</span></div>
+    </div>
+
+    <div class="toolbar-area">
+      <div class="component-picker">
+        <label for="components">EXPLORE COMPONENT</label>
+        <select id="components" aria-label="Select a robot component">
+          <option value="">Select component…</option>
+        </select>
+      </div>
+
+      <nav class="glass toolbar" aria-label="Robot animation modes">
+        <button data-mode="idle" aria-pressed="true"><span>01</span> IDLE</button>
+        <button data-mode="walk" aria-pressed="false"><span>02</span> WALK</button>
+        <button data-mode="wave" aria-pressed="false"><span>03</span> WAVE</button>
+        <button data-mode="inspect" aria-pressed="false"><span>04</span> INSPECT</button>
+        <div class="divider"></div>
+        <button id="explode" aria-pressed="false">⤢ <span class="explode-label">EXPLODED VIEW</span></button>
+      </nav>
+
+      <p class="controls-hint">DRAG TO ROTATE <b>·</b> SCROLL / PINCH TO ZOOM <b>·</b> SELECT TO EXPLORE</p>
+    </div>
+
+    <footer>
+      <span>DESIGNED FOR THE NEXT CHAPTER.</span>
+      <div>
+        <button id="motion" class="text-button" aria-pressed="false">PAUSE MOTION</button>
+        <button id="reset" class="text-button">RESET VIEW ↗</button>
+      </div>
+      <span id="render-status">WEBGL STUDIO</span>
+    </footer>
+
+    <div id="tooltip" hidden></div>
+    <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+    <noscript>This interactive studio requires JavaScript.</noscript>
+  </main>
+
+  <script>
+    window.studioBooted = false;
+    window.studioBootTimer = setTimeout(() => {
+      if (!window.studioBooted) {
+        document.getElementById("loading-label").textContent =
+          "Unable to start. Check your connection and serve this folder over HTTP.";
+      }
+    }, 20000);
+  </script>
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
